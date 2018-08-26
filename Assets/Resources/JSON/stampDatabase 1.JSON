@@ -1,0 +1,62 @@
+[
+  {
+    "stampSlug": "snowLocation",
+    "stampName": "Snowfields",
+    "description": "Let your pups roll and play in the snow! Don't forget to pack the puppy skis!",
+	"imagePath": "stampImages/UI_stamp_location_mountains_txt_01",
+    "stampType": "Location",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+	"cityStat": 0,
+	"snowStat": 100,
+	"woodlandStat": 0,
+
+	"funStat": 50,
+	"excitementStat": 0,
+	"romanceStat": 0,
+	"historicalStat": 0,
+	"relaxingStat": 0,
+  },
+
+    {
+    "stampSlug": "beachLocation",
+    "stampName": "The Beach",
+    "description": "Hope your doggy-paddle is up to scratch - it's time for some fun in the sun!",
+	"imagePath": "stampImages/UI_stamp_location_beach_txt_01",
+    "stampType": "Location",
+
+    "beachStat": 100,
+    "wildernessStat": 0,
+	"cityStat": 0,
+	"snowStat": 0,
+	"woodlandStat": 0,
+
+	"funStat": 50,
+	"excitementStat": 0,
+	"romanceStat": 0,
+	"historicalStat": 0,
+	"relaxingStat": 0,
+  },
+
+  {
+    "stampSlug": "template",
+    "stampName": "template",
+    "description": "template",
+    "stampType": "Location",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+	"cityStat": 0,
+	"snowStat": 0,
+	"woodlandStat": 0,
+
+	"funStat": 0,
+	"excitementStat": 0,
+	"romanceStat": 0,
+	"historicalStat": 0,
+	"relaxingStat": 0,
+  },
+
+  
+]
