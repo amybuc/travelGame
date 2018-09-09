@@ -63,6 +63,9 @@ public class postcardScript : MonoBehaviour {
     //public Button thisButton;
     GameObject gameplayObject;
 
+    //Plane image for onHoliday
+    public GameObject onHolidayImage;
+
 
 
 
@@ -84,9 +87,14 @@ public class postcardScript : MonoBehaviour {
 
     public void miniPostcardOnClick()
     {
-        gameplayObject.GetComponent<testActivity>().onMiniPostcardClick();
-        sendOnHolidayButton = GameObject.Find("sendOnHolidayButton").GetComponent<Button>();
-        sendOnHolidayButton.onClick.AddListener(sendOnHoliday);
+
+        if (onHolidayImage.activeSelf == false)
+        {
+            gameplayObject.GetComponent<testActivity>().onMiniPostcardClick();
+            sendOnHolidayButton = GameObject.Find("sendOnHolidayButton").GetComponent<Button>();
+            sendOnHolidayButton.onClick.AddListener(sendOnHoliday);
+        }
+
     }
 
     public void sendOnHoliday()
@@ -99,7 +107,7 @@ public class postcardScript : MonoBehaviour {
         #region //adding up all the active stamp's attribute modifiers
         foreach (GameObject activeStamp in activeStamps)
         {
-            
+
             finalBeachValue = finalBeachValue + activeStamp.GetComponent<objectStampScript>().beachStat;
             finalWildernessValue = finalWildernessValue + activeStamp.GetComponent<objectStampScript>().wildernessStat;
             finalCityValue = finalCityValue + activeStamp.GetComponent<objectStampScript>().cityStat;
@@ -116,7 +124,7 @@ public class postcardScript : MonoBehaviour {
             finalExtravagantValue = finalExtravagantValue + activeStamp.GetComponent<objectStampScript>().extravagantStat;
             finalWarmValue = finalWarmValue + activeStamp.GetComponent<objectStampScript>().warmStat;
             finalChillyValue = finalChillyValue + activeStamp.GetComponent<objectStampScript>().chillyStat;
-            
+
         }
         #endregion
 
@@ -612,18 +620,31 @@ public class postcardScript : MonoBehaviour {
             //CHECKSCORES
         }
 
+        //Derive a score
         Debug.Log("The final total score is " + holidayScoreTotal);
 
         #endregion
 
-        //Derive a score
+
 
 
         //Destroy those stamps, REMOVE THEM FROM INVENTORY
+
+        //Add the HolidayInProgress graphic to the card that was clicked.
+        sentOnHoliday(200, "hello");
 
         Debug.Log("sendOnHolidayButton hooked up with holiday!");
 
     }
 
+    public void sentOnHoliday(int finalScore, string feedbackMessage)
+    {
+        onHolidayImage.SetActive(true);
+        gameplayObject.GetComponent<testActivity>().onPostcardClose();
+
+        //COUNTER OPERATIONS, TEXT ADJUSTMENT ETC WILL HAPPEN HERE
+        // a void will be made like 'make holiday finished dialogue' in testActivity, which will be called here and will input the final score.
+    }
    
 }
+

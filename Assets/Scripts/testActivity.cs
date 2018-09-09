@@ -26,11 +26,19 @@ public class testActivity : MonoBehaviour {
 
     public GameObject postcardView;
     public Text postcardViewText;
+    public Text postcardViewText01;
+    public Text postcardViewText02;
+    public Text postcardViewText03;
+    public Image postcardWishIcon01;
+    public Image postcardWishIcon02;
+    public Image postcardWishIcon03;
     public GameObject stampRack;
     public GameObject miniPostcardRack;
+    public GameObject currentSelectedHoliday;
 
     //Marketplace UI
     public GameObject stampMarketCanvas;
+    public GameObject rotateMapButton;
 
     //JSON
     public static List<HolidayWish> wishDatabase;
@@ -118,9 +126,17 @@ public class testActivity : MonoBehaviour {
         postcardView.SetActive(true);
 
         //filling out the postcard UI element with the info of the clicked holiday
-        postcardViewText.text = "Location: " + EventSystem.current.currentSelectedGameObject.GetComponent<postcardScript>().locationWish.stampName + " Wishes: " + EventSystem.current.currentSelectedGameObject.GetComponent<postcardScript>().attributeWish1.stampName + " and " +  EventSystem.current.currentSelectedGameObject.GetComponent<postcardScript>().attributeWish2.stampName;
+        //postcardViewText.text = "Location: " + EventSystem.current.currentSelectedGameObject.GetComponent<postcardScript>().locationWish.stampName + " Wishes: " + EventSystem.current.currentSelectedGameObject.GetComponent<postcardScript>().attributeWish1.stampName + " and " +  EventSystem.current.currentSelectedGameObject.GetComponent<postcardScript>().attributeWish2.stampName;
+        currentSelectedHoliday = EventSystem.current.currentSelectedGameObject;
+        Debug.Log("current selected holiday is " + currentSelectedHoliday);
 
-
+        //Fill out each Text View and image with the correct values
+        postcardViewText01.text = "In the " + EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<postcardScript>().locationWish.stampName;
+        postcardViewText02.text = "" + EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<postcardScript>().attributeWish1.stampName;
+        postcardViewText03.text = "" + EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<postcardScript>().attributeWish2.stampName;
+        matchWishToIcon(EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<postcardScript>().locationWish, postcardWishIcon01);
+        matchWishToIcon(EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<postcardScript>().attributeWish1, postcardWishIcon02);
+        matchWishToIcon(EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<postcardScript>().attributeWish2, postcardWishIcon03);
     }
 
     public void onStampClick()
@@ -142,11 +158,78 @@ public class testActivity : MonoBehaviour {
     public void onMarketButtonClick()
     {
         stampMarketCanvas.SetActive(true);
+        rotateMapButton.SetActive(false);
     }
 
     public void onMarketCloseButtonClicked()
     {
         stampMarketCanvas.SetActive(false);
+        rotateMapButton.SetActive(true);
+    }
+
+    public void matchWishToIcon(HolidayWish inputWish, Image iconToChange)
+    {
+        if (inputWish.beachRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Beach");
+        }
+        if (inputWish.wildernessRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Wilderness");
+        }
+        if (inputWish.cityRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_City");
+        }
+        if (inputWish.snowRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Snow");
+        }
+        if (inputWish.woodlandRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Woodland");
+        }
+        if (inputWish.cruiseRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Cruise");
+        }
+        if (inputWish.funRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Fun");
+        }
+        if (inputWish.excitementRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Exciting");
+        }
+        if (inputWish.romanceRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Romance");
+        }
+        if (inputWish.historicalRequirement > 0)
+        {
+            //NO HISTORICAL LOGO - FIX THIS!!!!
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Fun");
+        }
+        if (inputWish.relaxingRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Relaxing");
+        }
+        if (inputWish.cheapRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Cheap");
+        }
+        if (inputWish.extravagantRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Extravagent");
+        }
+        if (inputWish.warmRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Warm");
+        }
+        if (inputWish.chillyRequirement > 0)
+        {
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Chilly");
+        }
     }
 
 

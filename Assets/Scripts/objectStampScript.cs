@@ -30,6 +30,8 @@ public class objectStampScript : MonoBehaviour{
     public int warmStat;
     public int chillyStat;
 
+    public Image holidayWishIcon01;
+
     //Double Click Variables
     float clicked = 0;
     float clicktime = 0;
@@ -37,11 +39,79 @@ public class objectStampScript : MonoBehaviour{
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(imagePath);
-		
-	}
+
+        #region Check where there's a value assigned in the stamp's attributes
+
+        if (beachStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Beach");
+        }
+        if (wildernessStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Wilderness");
+        }
+        if (cityStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_City");
+        }
+        if (snowStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Snow");
+        }
+        if (woodlandStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Woodland");
+        }
+        if (cruiseStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Cruise");
+        }
+        if (funStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Fun");
+        }
+        if (excitementStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Exciting");
+        }
+        if (romanceStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Romance");
+        }
+        if (historicalStat > 0)
+        {
+            //HAVENT MADE A HISTORICAL ICON YET - DO THIS ASAP
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Beach");
+        }
+        if (relaxingStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Relaxing");
+        }
+        if (cheapStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Cheap");
+        }
+        if (extravagantStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Extravagant");
+        }
+        if (warmStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Warm");
+        }
+        if (chillyStat > 0)
+        {
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Chilly");
+        }
+
+
+        #endregion
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

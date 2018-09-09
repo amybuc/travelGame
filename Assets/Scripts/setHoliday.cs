@@ -54,4 +54,7 @@ public class setHoliday : MonoBehaviour {
 
 
     }
+
+    //To be done - in setupHoliday(), instead of instantiating a postcard, add it to an array, then refresh the postcard rack with the array every time a new one is added or one is removed etc.
+    //THEN - you can set timers up within the postcard script when theyre on holiday. There'll be a function specifically for making a dialogue box with a reward, with input for a message and such.
 }

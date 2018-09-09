@@ -43,6 +43,9 @@ public class dogClickHandler : MonoBehaviour {
         {
             if (hit.collider.tag == "dog")
             {
+                gameplayObject.GetComponent<testActivity>().updateHoliday();
+
+                /*
                 if (dogClicked == false)
                 {
                     //Debug.Log("Pupparoo clickaroo");
@@ -57,8 +60,9 @@ public class dogClickHandler : MonoBehaviour {
                     StartCoroutine(showBarkUI());
                     //PLAY BARK
                 }
-                
-               
+                */
+
+
             }
         }
     }
