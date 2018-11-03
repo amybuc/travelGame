@@ -23,6 +23,8 @@
 	"warmStat": 0,
 	"chillyStat": 0,
 
+    "price": 20 
+
   },
 
     {
@@ -48,6 +50,8 @@
 	"extravagantStat": 0,
 	"warmStat": 0,
 	"chillyStat": 0,
+
+    "price": 20 
   },
 
   {
@@ -73,6 +77,8 @@
 	"extravagantStat": 0,
 	"warmStat": 0,
 	"chillyStat": 0,
+
+    "price": 20 
   },
 
   {
@@ -98,6 +104,8 @@
 	"extravagantStat": 0,
 	"warmStat": 0,
 	"chillyStat": 0,
+
+    "price": 20 
   },
 
   {
@@ -123,6 +131,8 @@
 	"extravagantStat": 0,
 	"warmStat": 0,
 	"chillyStat": 0,
+
+    "price": 20 
   },
 
     {
@@ -148,6 +158,224 @@
 	"extravagantStat": 0,
 	"warmStat": 0,
 	"chillyStat": 0,
+
+    "price": 20 
+  },
+
+  {
+    "stampSlug": "romanticDinner",
+    "stampName": "Romantic Dinner",
+    "description": "A cute and delicious meal for two!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 100,
+    "historicalStat": 0,
+    "relaxingStat": 0,
+    "cheapStat": 0,
+    "extravagantStat": 0,
+    "warmStat": 0,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "carnival",
+    "stampName": "Carnival",
+    "description": "Thrills and spills await at the carnival!",
+    "imagePath": "stampImages/UI_stamp_activity_carnival_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 100,
+    "romanceStat": 0,
+    "historicalStat": 0,
+    "relaxingStat": 0,
+    "cheapStat": 0,
+    "extravagantStat": 0,
+    "warmStat": 0,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "castleTour",
+    "stampName": "Castle Tour",
+    "description": "A guided tour through an ancient castle!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 0,
+    "historicalStat": 100,
+    "relaxingStat": 0,
+    "cheapStat": 0,
+    "extravagantStat": 0,
+    "warmStat": 0,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "puppyMassage",
+    "stampName": "Puppy Massage",
+    "description": "Hit the massage parlour for some belly rubs!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 0,
+    "historicalStat": 0,
+    "relaxingStat": 100,
+    "cheapStat": 0,
+    "extravagantStat": 0,
+    "warmStat": 0,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "museum",
+    "stampName": "Museum Visit",
+    "description": "Cheap and Historical, the museum is always a perfect trip!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 0,
+    "historicalStat": 0,
+    "relaxingStat": 0,
+    "cheapStat": 100,
+    "extravagantStat": 0,
+    "warmStat": 0,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "shopping Trip",
+    "stampName": "Shopping Trip",
+    "description": "Splash some puppy cash at the mall!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 0,
+    "historicalStat": 0,
+    "relaxingStat": 0,
+    "cheapStat": 0,
+    "extravagantStat": 100,
+    "warmStat": 0,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "sauna",
+    "stampName": "Sauna",
+    "description": "Sweat it out in a relaxing hot sauna!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 0,
+    "historicalStat": 0,
+    "relaxingStat": 0,
+    "cheapStat": 0,
+    "extravagantStat": 0,
+    "warmStat": 100,
+    "chillyStat": 0,
+
+    "price": 50 
+  },
+
+  {
+    "stampSlug": "skiing",
+    "stampName": "Skiing",
+    "description": "Hit the slopes for some chilly fun!",
+    "imagePath": "stampImages/UI_stamp_activity_romanticdinner_txt_01",
+    "stampType": "Activity",
+
+    "beachStat": 0,
+    "wildernessStat": 0,
+    "cityStat": 0,
+    "snowStat": 0,
+    "woodlandStat": 0,
+    "cruiseStat": 0,
+
+    "funStat": 0,
+    "excitementStat": 0,
+    "romanceStat": 0,
+    "historicalStat": 0,
+    "relaxingStat": 0,
+    "cheapStat": 0,
+    "extravagantStat": 0,
+    "warmStat": 0,
+    "chillyStat": 100,
+
+    "price": 50 
   },
 
   {
@@ -172,6 +400,8 @@
 	"extravagantStat": 0,
 	"warmStat": 0,
 	"chillyStat": 0,
+
+    "price": 50 
   },
 
   

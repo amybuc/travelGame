@@ -21,6 +21,7 @@ public class testActivity : MonoBehaviour {
     public int holidayStat03;
 
     public GameObject resourcesObject;
+    public GameObject stampManager;
 
     public GameObject holidaySetter;
 
@@ -40,6 +41,9 @@ public class testActivity : MonoBehaviour {
     public GameObject stampMarketCanvas;
     public GameObject rotateMapButton;
 
+    public Text coinCounter;
+    public int playerCoins;
+
     //JSON
     public static List<HolidayWish> wishDatabase;
 
@@ -47,12 +51,19 @@ public class testActivity : MonoBehaviour {
 
     void Start () {
 
+        //Setting playercoins - TESTING ONLY - will be managed on start by playerprefs
+        playerCoins = 50;
+
         BuildHolildayDatabase();
         Debug.Log("The First holiday wish in the database is of type " + wishDatabase[0].stampName + "and has has a fun requirement of " + wishDatabase[0].funRequirement);
+        stampManager = GameObject.Find("stampManager");
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Keep the coincount updating
+        coinCounter.text = "" + playerCoins;
 
     }
 
@@ -149,6 +160,18 @@ public class testActivity : MonoBehaviour {
 
     public void onPostcardClose()
     {
+        //Deleting all of the stamps that are currently on the postcard. Then, restocking them onto the stamp rack
+        List<GameObject> activeStamps = new List<GameObject>();
+        activeStamps.AddRange(GameObject.FindGameObjectsWithTag("activeStamp"));
+
+        foreach (GameObject activeStamp in activeStamps)
+        {
+            Destroy(activeStamp);
+        }
+
+        stampManager.GetComponent<StampDatabase>().populateStampRack();
+
+
         dialogueBox.SetActive(false);
         miniPostcardRack.SetActive(true);
         stampRack.SetActive(false);
@@ -207,8 +230,7 @@ public class testActivity : MonoBehaviour {
         }
         if (inputWish.historicalRequirement > 0)
         {
-            //NO HISTORICAL LOGO - FIX THIS!!!!
-            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Fun");
+            iconToChange.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Historical");
         }
         if (inputWish.relaxingRequirement > 0)
         {

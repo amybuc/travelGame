@@ -29,6 +29,8 @@ public class Stamp {
     public int warmStat;
     public int chillyStat;
 
+    public int price;
+
 
     // Use this for initialization
     void Start () {

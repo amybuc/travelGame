@@ -34,6 +34,7 @@ public class setHoliday : MonoBehaviour {
     public void setupHoliday (HolidayWish locationWish, HolidayWish attributeWish1, HolidayWish attributeWish2)
     {
         GameObject addedHoliday = Instantiate(postcardTemplate);
+        //Add holiday with attributes to some kind of list??
         addedHoliday.transform.SetParent(content.transform, false);
         addedHoliday.GetComponent<postcardScript>().locationWish = locationWish;
         addedHoliday.GetComponent<postcardScript>().attributeWish1 = attributeWish1;

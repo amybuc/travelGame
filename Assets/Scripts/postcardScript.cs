@@ -66,7 +66,13 @@ public class postcardScript : MonoBehaviour {
     //Plane image for onHoliday
     public GameObject onHolidayImage;
 
+    //Stamp Manager GameObject to affect Inventory
+    public GameObject stampManager;
 
+    //Countdown for Holiday
+    public float counterTimeLeft;
+    public bool counterOn;
+    public Text counterText;
 
 
     // Use this for initialization
@@ -77,11 +83,24 @@ public class postcardScript : MonoBehaviour {
         gameplayObject = GameObject.FindWithTag("gameplayObject");
 
         postCardText.text = (" " + locationWish.stampName + attributeWish1.stampName + attributeWish2.stampName);
+
+        stampManager = GameObject.Find("stampManager");
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (counterOn)
+        {
+            counterTimeLeft -= Time.deltaTime;
+            //Debug.Log("Time left is " + Mathf.Round(counterTimeLeft));
+            counterText.text = "" + Mathf.Round(counterTimeLeft);
+            if (counterTimeLeft < 0)
+            {
+                counterOn = false;
+            }
+        }
 		
 	}
 
@@ -108,22 +127,68 @@ public class postcardScript : MonoBehaviour {
         foreach (GameObject activeStamp in activeStamps)
         {
 
-            finalBeachValue = finalBeachValue + activeStamp.GetComponent<objectStampScript>().beachStat;
-            finalWildernessValue = finalWildernessValue + activeStamp.GetComponent<objectStampScript>().wildernessStat;
-            finalCityValue = finalCityValue + activeStamp.GetComponent<objectStampScript>().cityStat;
-            finalSnowValue = finalSnowValue + activeStamp.GetComponent<objectStampScript>().snowStat;
-            finalWoodlandValue = finalWoodlandValue + activeStamp.GetComponent<objectStampScript>().woodlandStat;
-            finalCruiseValue = finalCruiseValue + activeStamp.GetComponent<objectStampScript>().cruiseStat;
+            if (activeStamp.GetComponent<objectStampScript>().beachStat > 0)
+            {
+                finalBeachValue = finalBeachValue + activeStamp.GetComponent<objectStampScript>().beachStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().wildernessStat > 0)
+            {
+                finalWildernessValue = finalWildernessValue + activeStamp.GetComponent<objectStampScript>().wildernessStat;                
+            }
+            if (activeStamp.GetComponent<objectStampScript>().cityStat > 0)
+            {
+                finalCityValue = finalCityValue + activeStamp.GetComponent<objectStampScript>().cityStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().snowStat > 0)
+            {
+                finalSnowValue = finalSnowValue + activeStamp.GetComponent<objectStampScript>().snowStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().woodlandStat > 0)
+            {
+                finalWoodlandValue = finalWoodlandValue + activeStamp.GetComponent<objectStampScript>().woodlandStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().cruiseStat > 0)
+            {
+                finalCruiseValue = finalCruiseValue + activeStamp.GetComponent<objectStampScript>().cruiseStat;
+            }
 
-            finalFunValue = finalFunValue + activeStamp.GetComponent<objectStampScript>().funStat;
-            finalExcitementValue = finalExcitementValue + activeStamp.GetComponent<objectStampScript>().excitementStat;
-            finalRomanceValue = finalRomanceValue + activeStamp.GetComponent<objectStampScript>().romanceStat;
-            finalHistoricalValue = finalHistoricalValue + activeStamp.GetComponent<objectStampScript>().historicalStat;
-            finalRelaxingValue = finalRelaxingValue + activeStamp.GetComponent<objectStampScript>().relaxingStat;
-            finalCheapValue = finalCheapValue + activeStamp.GetComponent<objectStampScript>().cheapStat;
-            finalExtravagantValue = finalExtravagantValue + activeStamp.GetComponent<objectStampScript>().extravagantStat;
-            finalWarmValue = finalWarmValue + activeStamp.GetComponent<objectStampScript>().warmStat;
-            finalChillyValue = finalChillyValue + activeStamp.GetComponent<objectStampScript>().chillyStat;
+
+            if (activeStamp.GetComponent<objectStampScript>().funStat > 0)
+            {
+                finalFunValue = finalFunValue + activeStamp.GetComponent<objectStampScript>().funStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().excitementStat > 0)
+            {
+                finalExcitementValue = finalExcitementValue + activeStamp.GetComponent<objectStampScript>().excitementStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().romanceStat > 0)
+            {
+                finalRomanceValue = finalRomanceValue + activeStamp.GetComponent<objectStampScript>().romanceStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().historicalStat > 0)
+            {
+                finalHistoricalValue = finalHistoricalValue + activeStamp.GetComponent<objectStampScript>().historicalStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().relaxingStat > 0)
+            {
+                finalRelaxingValue = finalRelaxingValue + activeStamp.GetComponent<objectStampScript>().relaxingStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().cheapStat > 0)
+            {
+                finalCheapValue = finalCheapValue + activeStamp.GetComponent<objectStampScript>().cheapStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().extravagantStat > 0)
+            {
+                finalExtravagantValue = finalExtravagantValue + activeStamp.GetComponent<objectStampScript>().extravagantStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().warmStat > 0)
+            {
+                finalWarmValue = finalWarmValue + activeStamp.GetComponent<objectStampScript>().warmStat;
+            }
+            if (activeStamp.GetComponent<objectStampScript>().chillyStat > 0)
+            {
+                finalChillyValue = finalChillyValue + activeStamp.GetComponent<objectStampScript>().chillyStat;
+            }
 
         }
         #endregion
@@ -500,6 +565,7 @@ public class postcardScript : MonoBehaviour {
             if (finalSnowValue >= 81 && finalSnowValue <= 100)
             {
                 holidayScoreTotal = holidayScoreTotal + 100;
+               
             }
 
             //Check that no other locations are active
@@ -577,46 +643,244 @@ public class postcardScript : MonoBehaviour {
 
         if (funRequired == true)
         {
-            //CHECKSCORES
+            //Check score
+            if (finalFunValue >= 0 && finalFunValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalFunValue >= 21 && finalFunValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalFunValue >= 41 && finalFunValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalFunValue >= 61 && finalFunValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalFunValue >= 81 && finalFunValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
+            //Check no conflicting values
         }
 
         if (excitementRequired == true)
         {
-            //CHECKSCORES
+            //Check score
+            if (finalExcitementValue >= 0 && finalExcitementValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalExcitementValue >= 21 && finalExcitementValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalExcitementValue >= 41 && finalExcitementValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalExcitementValue >= 61 && finalExcitementValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalExcitementValue >= 81 && finalExcitementValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
+            //Check for conflicting values
         }
 
         if (romanceRequired == true)
         {
-            //CHECKSCORES
+            //Check score
+            if (finalRomanceValue >= 0 && finalRomanceValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalRomanceValue >= 21 && finalRomanceValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalRomanceValue >= 41 && finalRomanceValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalRomanceValue >= 61 && finalRomanceValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalRomanceValue >= 81 && finalRomanceValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
+            //Check for conflicting scores
         }
 
         if (historicalRequired == true)
         {
-            //CHECKSCORES
+            //Check score
+            if (finalHistoricalValue >= 0 && finalHistoricalValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalHistoricalValue >= 21 && finalHistoricalValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalHistoricalValue >= 41 && finalHistoricalValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalHistoricalValue >= 61 && finalHistoricalValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalHistoricalValue >= 81 && finalHistoricalValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
+            //check for no conflicting scores
         }
 
         if (relaxingRequired == true)
         {
+            //Check score
+            if (finalRelaxingValue >= 0 && finalRelaxingValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalRelaxingValue >= 21 && finalRelaxingValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalRelaxingValue >= 41 && finalRelaxingValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalRelaxingValue >= 61 && finalRelaxingValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalRelaxingValue >= 81 && finalRelaxingValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
             //CHECKSCORES
         }
 
         if (cheapRequired == true)
         {
+            //Check score
+            if (finalCheapValue >= 0 && finalCheapValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalCheapValue >= 21 && finalCheapValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalCheapValue >= 41 && finalCheapValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalCheapValue >= 61 && finalCheapValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalCheapValue >= 81 && finalCheapValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
             //CHECKSCORES
         }
 
         if (extravagantRequired == true)
         {
+            //Check score
+            if (finalExtravagantValue >= 0 && finalExtravagantValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalExtravagantValue >= 21 && finalExtravagantValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalExtravagantValue >= 41 && finalExtravagantValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalExtravagantValue >= 61 && finalExtravagantValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalExtravagantValue >= 81 && finalExtravagantValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
             //CHECKSCORES
         }
 
         if (warmRequired == true)
         {
+            //Check score
+            if (finalWarmValue >= 0 && finalWarmValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalWarmValue >= 21 && finalWarmValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalWarmValue >= 41 && finalWarmValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalWarmValue >= 61 && finalWarmValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalWarmValue >= 81 && finalWarmValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
             //CHECKSCORES
         }
 
         if (chillyRequired == true)
         {
+            //Check score
+            if (finalChillyValue >= 0 && finalChillyValue <= 20)
+            {
+                holidayScoreTotal = holidayScoreTotal + 20;
+            }
+            if (finalChillyValue >= 21 && finalChillyValue <= 40)
+            {
+                holidayScoreTotal = holidayScoreTotal + 40;
+            }
+            if (finalChillyValue >= 41 && finalChillyValue <= 60)
+            {
+                holidayScoreTotal = holidayScoreTotal + 60;
+            }
+            if (finalChillyValue >= 61 && finalChillyValue <= 80)
+            {
+                holidayScoreTotal = holidayScoreTotal + 80;
+            }
+            if (finalChillyValue >= 81 && finalChillyValue <= 100)
+            {
+                holidayScoreTotal = holidayScoreTotal + 100;
+            }
+
             //CHECKSCORES
         }
 
@@ -629,6 +893,12 @@ public class postcardScript : MonoBehaviour {
 
 
         //Destroy those stamps, REMOVE THEM FROM INVENTORY
+        foreach (GameObject activeStamp in activeStamps)
+        {
+            stampManager.GetComponent<StampDatabase>().removeStampfromPlayerInventory(activeStamp.GetComponent<objectStampScript>().stampSlug);
+            Destroy(activeStamp);
+
+        }
 
         //Add the HolidayInProgress graphic to the card that was clicked.
         sentOnHoliday(200, "hello");
@@ -640,11 +910,17 @@ public class postcardScript : MonoBehaviour {
     public void sentOnHoliday(int finalScore, string feedbackMessage)
     {
         onHolidayImage.SetActive(true);
+        counterText.gameObject.SetActive(true);
         gameplayObject.GetComponent<testActivity>().onPostcardClose();
 
         //COUNTER OPERATIONS, TEXT ADJUSTMENT ETC WILL HAPPEN HERE
         // a void will be made like 'make holiday finished dialogue' in testActivity, which will be called here and will input the final score.
+
+        counterOn = true;
+        counterTimeLeft = 30.0f;
     }
+
+
    
 }
 

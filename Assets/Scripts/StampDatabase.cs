@@ -10,12 +10,13 @@ public class StampDatabase : MonoBehaviour {
 
     public GameObject inventoryObject;
 
-    List<Stamp> inventory = new List<Stamp>();
+    public List<Stamp> inventory = new List<Stamp>();
 
     //Inventory Script Items
     //public static List<Stamp> inventory;
     public GameObject stampPrefab;
     public GameObject stampRack;
+    public GameObject shopStampPrefab;
 
 
     private void BuildDatabase()
@@ -56,6 +57,17 @@ public class StampDatabase : MonoBehaviour {
         {
             Debug.Log("Stamp " + getStamp("snowLocation").stampName);
             addStamptoPlayerInventory("snowLocation");
+            //Debugging Inventory
+            /*
+            addStamptoPlayerInventory("romanticDinner");
+            addStamptoPlayerInventory("carnival");
+            addStamptoPlayerInventory("castleTour");
+            addStamptoPlayerInventory("puppyMassage");
+            addStamptoPlayerInventory("museum");
+            addStamptoPlayerInventory("shoppingTrip");
+            addStamptoPlayerInventory("sauna");
+            addStamptoPlayerInventory("skiing");
+            */
             populateStampRack();
             //Debug.Log("The first stamp in the player inventory is " + inventory[0].stampName);
         }
@@ -85,6 +97,20 @@ public class StampDatabase : MonoBehaviour {
             }
         }
 
+    }
+
+    public void removeStampfromPlayerInventory(string stampSlug)
+    {
+        foreach (Stamp stamp in stampList)
+        {
+            if (stamp.stampSlug.Equals(stampSlug))
+            {
+                inventory.Remove(stamp);
+                Debug.Log("The " + stamp.stampName + " has been removed from the inventory");
+                populateStampRack();
+                return;
+            }
+        }
     }
 
     public void populateStampRack()
@@ -125,9 +151,63 @@ public class StampDatabase : MonoBehaviour {
             stampTemplate.GetComponent<objectStampScript>().extravagantStat = stamp.extravagantStat;
             stampTemplate.GetComponent<objectStampScript>().warmStat = stamp.warmStat;
             stampTemplate.GetComponent<objectStampScript>().chillyStat = stamp.chillyStat;
+            stampTemplate.GetComponent<objectStampScript>().price = stamp.price;
 
             stampTemplate.transform.SetParent(stampRack.transform, false);
         }
+    }
+
+    //SHOP
+
+    //A method that, OnStart, will populate the Shop with stamp templates that display a coin price, 
+    //and a button setup that adds a stamp to the player inventory, also detracting the coin value, when clicked
+
+    public void populateStampShop()
+    {
+
+    }
+
+    public void addStamptoShop(string stampSlug, string scrollView)
+    {
+        foreach (Stamp stamp in stampList)
+        {
+            if (stampSlug.Equals(stampSlug))
+            {
+                //Instantiate the Prefab
+                GameObject shopStampTemplate = Instantiate(shopStampPrefab);
+
+                //Filling in the info:
+                shopStampTemplate.GetComponent<objectStampScript>().stampSlug = stamp.stampSlug;
+                shopStampTemplate.GetComponent<objectStampScript>().name = stamp.stampName;
+                shopStampTemplate.GetComponent<objectStampScript>().imagePath = stamp.imagePath;
+                shopStampTemplate.GetComponent<objectStampScript>().description = stamp.description;
+                shopStampTemplate.GetComponent<objectStampScript>().stampType = stamp.stampType;
+
+                shopStampTemplate.GetComponent<objectStampScript>().beachStat = stamp.beachStat;
+                shopStampTemplate.GetComponent<objectStampScript>().wildernessStat = stamp.wildernessStat;
+                shopStampTemplate.GetComponent<objectStampScript>().cityStat = stamp.cityStat;
+                shopStampTemplate.GetComponent<objectStampScript>().snowStat = stamp.snowStat;
+                shopStampTemplate.GetComponent<objectStampScript>().woodlandStat = stamp.woodlandStat;
+                shopStampTemplate.GetComponent<objectStampScript>().cruiseStat = stamp.cruiseStat;
+
+                shopStampTemplate.GetComponent<objectStampScript>().funStat = stamp.funStat;
+                shopStampTemplate.GetComponent<objectStampScript>().excitementStat = stamp.excitementStat;
+                shopStampTemplate.GetComponent<objectStampScript>().romanceStat = stamp.romanceStat;
+                shopStampTemplate.GetComponent<objectStampScript>().historicalStat = stamp.historicalStat;
+                shopStampTemplate.GetComponent<objectStampScript>().relaxingStat = stamp.relaxingStat;
+                shopStampTemplate.GetComponent<objectStampScript>().cheapStat = stamp.cheapStat;
+                shopStampTemplate.GetComponent<objectStampScript>().extravagantStat = stamp.extravagantStat;
+                shopStampTemplate.GetComponent<objectStampScript>().warmStat = stamp.warmStat;
+                shopStampTemplate.GetComponent<objectStampScript>().chillyStat = stamp.chillyStat;
+
+                shopStampTemplate.GetComponent<objectStampScript>().price = stamp.price;
+
+                //set transform
+                shopStampTemplate.transform.SetParent(GameObject.Find(scrollView).transform, false);
+            }
+        }
+
+
     }
 
     // Update is called once per frame

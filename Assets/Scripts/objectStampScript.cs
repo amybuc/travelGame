@@ -30,6 +30,8 @@ public class objectStampScript : MonoBehaviour{
     public int warmStat;
     public int chillyStat;
 
+    public int price;
+
     public Image holidayWishIcon01;
 
     //Double Click Variables
@@ -84,8 +86,7 @@ public class objectStampScript : MonoBehaviour{
         }
         if (historicalStat > 0)
         {
-            //HAVENT MADE A HISTORICAL ICON YET - DO THIS ASAP
-            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Beach");
+            holidayWishIcon01.GetComponent<Image>().sprite = Resources.Load<Sprite>("wishIconImages/wishMarker_Historical");
         }
         if (relaxingStat > 0)
         {
