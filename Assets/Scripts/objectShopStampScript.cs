@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class objectShopStampScript : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class objectShopStampScript : MonoBehaviour {
     GameObject stampManager;
     GameObject gameManager;
 
+    public Text priceText;
+
 	// Use this for initialization
 	void Start () {
 
@@ -16,6 +19,8 @@ public class objectShopStampScript : MonoBehaviour {
         gameManager = GameObject.Find("gameplayObject");
         slug = gameObject.GetComponent<objectStampScript>().stampSlug;
         price = gameObject.GetComponent<objectStampScript>().price;
+
+        priceText.text = "" + price;
 		
 	}
 	
@@ -30,6 +35,7 @@ public class objectShopStampScript : MonoBehaviour {
         if (gameManager.GetComponent<testActivity>().playerCoins >= price)
         {
             stampManager.GetComponent<StampDatabase>().addStamptoPlayerInventory(slug);
+            gameManager.GetComponent<testActivity>().playerCoins = gameManager.GetComponent<testActivity>().playerCoins - price;
 
         }
         //charge coins

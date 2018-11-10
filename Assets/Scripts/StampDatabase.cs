@@ -18,6 +18,9 @@ public class StampDatabase : MonoBehaviour {
     public GameObject stampRack;
     public GameObject shopStampPrefab;
 
+    public GameObject stampShopActivityScrollView;
+    public GameObject stampShopLocationScrollView;
+
 
     private void BuildDatabase()
     {
@@ -69,6 +72,9 @@ public class StampDatabase : MonoBehaviour {
             addStamptoPlayerInventory("skiing");
             */
             populateStampRack();
+
+            addStamptoShop("romanticDinner", "activity");
+
             //Debug.Log("The first stamp in the player inventory is " + inventory[0].stampName);
         }
 
@@ -76,8 +82,15 @@ public class StampDatabase : MonoBehaviour {
         {
             Debug.Log("Inventory list does not exist!");
         }
-	
-	}
+
+        //Populate Shop stamprack
+        //Will also eventually need a countdown for this - to avoid people just restarting to refresh
+
+
+
+
+
+    }
 
     public void addStamptoPlayerInventory(string stampSlug)
     {
@@ -164,17 +177,34 @@ public class StampDatabase : MonoBehaviour {
 
     public void populateStampShop()
     {
+        //Assigning all the location stamps to their scrollview
+        addStamptoShop("snowLocation", "location");
+        addStamptoShop("beachLocation", "location");
+        //DO THE REST OF THESE
 
+        //Assigning a random mix of activity stamps to their scrollview, based on rarity eventually
+        //Add all stamps of type activity to a list of stamps
+        //For eight iterations, randomise a number between 0 and the length of the activity list, and add those
+        //   stamps to the shop. BUT: if a stamp has a rarity of above common, randomise a number between 0
+        //   and 100 - if it's between 75-100, go through with adding the stamp to the shop. If it's between
+        //   90 and 100, a stamp of type Rare can be added to the shop :0
+        //For later: Make sure the stamp shop only updates once a day - use the dataManager script for this
+        //   to check the time and calculate when the next time the shop updates will be.
     }
 
     public void addStamptoShop(string stampSlug, string scrollView)
     {
+        Debug.Log("Method fired");
+
         foreach (Stamp stamp in stampList)
         {
-            if (stampSlug.Equals(stampSlug))
+            if (stamp.stampSlug.Equals(stampSlug))
             {
+                Debug.Log("Matching stamp found");
+
                 //Instantiate the Prefab
                 GameObject shopStampTemplate = Instantiate(shopStampPrefab);
+                Debug.Log("Stamp instantiated!");
 
                 //Filling in the info:
                 shopStampTemplate.GetComponent<objectStampScript>().stampSlug = stamp.stampSlug;
@@ -203,7 +233,16 @@ public class StampDatabase : MonoBehaviour {
                 shopStampTemplate.GetComponent<objectStampScript>().price = stamp.price;
 
                 //set transform
-                shopStampTemplate.transform.SetParent(GameObject.Find(scrollView).transform, false);
+                //shopStampTemplate.transform.SetParent(GameObject.Find(scrollView).transform, false);
+                if (scrollView.Equals("activity"))
+                {
+                    shopStampTemplate.transform.SetParent(stampShopActivityScrollView.transform, false);
+                }
+                else if (scrollView.Equals("location"))
+                {
+                    shopStampTemplate.transform.SetParent(stampShopLocationScrollView.transform, false);
+                }
+
             }
         }
 
