@@ -28,6 +28,7 @@ public class dataManager : MonoBehaviour {
         //Use Subtract method and store the result as a timespan variable
         TimeSpan difference = currentDate.Subtract(oldDate);
         Debug.Log("Difference: " + difference);
+        Debug.Log("Difference in seconds: " + difference.TotalSeconds);
 
         // Minus the current time from the time that the app was closed/paused
         // Minus this amount from the counters of all active holidays

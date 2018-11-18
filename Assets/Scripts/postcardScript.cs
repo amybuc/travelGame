@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class postcardScript : MonoBehaviour {
 
+
     public int holidayWish01, holidayWish02, holidayWish03;
 
     public HolidayWish locationWish;
@@ -95,10 +96,25 @@ public class postcardScript : MonoBehaviour {
         {
             counterTimeLeft -= Time.deltaTime;
             //Debug.Log("Time left is " + Mathf.Round(counterTimeLeft));
-            counterText.text = "" + Mathf.Round(counterTimeLeft);
+
+            if (counterTimeLeft <= 60)
+            {
+                counterText.text = "" + Mathf.Round(counterTimeLeft);
+            }
+            else if (counterTimeLeft > 60)
+            {
+                counterText.text = "" + Mathf.Round(counterTimeLeft/60) + " minutes";
+            }
+            else if ((counterTimeLeft/60) <= 60)
+            {
+                counterText.text = "" + Mathf.Round((counterTimeLeft / 60) / 60) + " hours"; 
+            }
+
+
             if (counterTimeLeft < 0)
             {
                 counterOn = false;
+                //SET A COMPLETE HOLIDAY BUTTON TO ACTIVE!!
             }
         }
 		
@@ -917,7 +933,7 @@ public class postcardScript : MonoBehaviour {
         // a void will be made like 'make holiday finished dialogue' in testActivity, which will be called here and will input the final score.
 
         counterOn = true;
-        counterTimeLeft = 30.0f;
+        counterTimeLeft = 7800.0f;
     }
 
 
