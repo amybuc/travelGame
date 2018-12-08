@@ -118,6 +118,18 @@ public class testActivity : MonoBehaviour {
         holidayDescription.text = " " + resourcesObject.GetComponent<holidayWishes>().holidayRequestPt1[Random.Range(1, resourcesObject.GetComponent<holidayWishes>().holidayRequestPt1.Length)] + " I want to go to the " + locationWish.stampName + ", and I want it to be " + attributeWish1.stampName + " and " + attributeWish2.stampName + "!";
     }
 
+    public void updateSpecificHoliday(int locwish, int actwish2, int actwish3)
+    {
+
+        holidayStat01 = locwish;
+        holidayStat02 = actwish2;
+        holidayStat03 = actwish3;
+
+        locationWish = wishDatabase[locwish];
+        attributeWish1 = wishDatabase[actwish2];
+        attributeWish2 = wishDatabase[actwish3];
+    }
+
     public void closeBox()
     {
         dialogueBox.SetActive(false);
@@ -125,7 +137,7 @@ public class testActivity : MonoBehaviour {
 
     public void onHolidayAccept()
     {
-        holidaySetter.GetComponent<setHoliday>().setupHoliday(locationWish, attributeWish1, attributeWish2);
+        holidaySetter.GetComponent<setHoliday>().setupHoliday(locationWish, attributeWish1, attributeWish2, holidayStat01, holidayStat02, holidayStat03);
         dialogueBox.SetActive(false);
     }
 

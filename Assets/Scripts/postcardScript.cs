@@ -12,6 +12,10 @@ public class postcardScript : MonoBehaviour {
     public HolidayWish attributeWish1;
     public HolidayWish attributeWish2;
 
+    public int locWish;
+    public int actWish1;
+    public int actWish2;
+
     //Send on Holiday Button Variables
     public Button sendOnHolidayButton;
 

@@ -31,7 +31,7 @@ public class setHoliday : MonoBehaviour {
     }
 	
 
-    public void setupHoliday (HolidayWish locationWish, HolidayWish attributeWish1, HolidayWish attributeWish2)
+    public void setupHoliday (HolidayWish locationWish, HolidayWish attributeWish1, HolidayWish attributeWish2, int WishInt1, int WishInt2, int WishInt3)
     {
         GameObject addedHoliday = Instantiate(postcardTemplate);
         //Add holiday with attributes to some kind of list??
@@ -39,6 +39,10 @@ public class setHoliday : MonoBehaviour {
         addedHoliday.GetComponent<postcardScript>().locationWish = locationWish;
         addedHoliday.GetComponent<postcardScript>().attributeWish1 = attributeWish1;
         addedHoliday.GetComponent<postcardScript>().attributeWish2 = attributeWish2;
+
+        addedHoliday.GetComponent<postcardScript>().locWish = WishInt1;
+        addedHoliday.GetComponent<postcardScript>().actWish1 = WishInt2;
+        addedHoliday.GetComponent<postcardScript>().actWish2 = WishInt3;
 
         //Updating the display that shows the amount of active holidays the player has!
         activeHolidayCountText.text =  GameObject.FindGameObjectsWithTag("ScrollViewPostCardButton").Length.ToString();
