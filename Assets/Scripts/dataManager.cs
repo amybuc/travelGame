@@ -8,10 +8,15 @@ public class dataManager : MonoBehaviour {
     DateTime currentDate;
     DateTime oldDate;
 
+    public GameObject postcardRack;
+    public GameObject stampPrefab;
+
     GameObject inventoryObject;
 
-	// Use this for initialization
-	void Start () {
+    //public List<GameObject> savedHoliday;
+
+    // Use this for initialization
+    void Start () {
 
         inventoryObject = GameObject.Find("stampManager");
 
@@ -33,7 +38,83 @@ public class dataManager : MonoBehaviour {
         // Minus the current time from the time that the app was closed/paused
         // Minus this amount from the counters of all active holidays
         // Check the syspref arrays for the stamp inventory, and foreach stamp in the list, addstamptoinventory with that stamp slug
+
+
+        if (ES3.KeyExists("myInteger"))
+        {
+            int myInteger = ES3.Load<int>("myInteger");
+            Debug.Log("My saved integer = " + myInteger);
+        }
+        else if (!ES3.KeyExists("myInteger"))
+        {
+            Debug.Log("No Inty found :c");
+        }
+
+        //Deleting existing postcard save file - comment out as needed
+       //if (ES2.Exists("myFile.txt?tag=savedHolidayData"))
+           //ES2.Delete("myFile.txt?tag=savedHolidayData");
+
+
+        // If there's a List to load, load it.
+        if (ES2.Exists("myFile.txt?tag=savedHolidayData"))
+        {
+            Debug.Log("LoadFile found!");
+            List<postcardScript> myLoadedHolidays;
+            myLoadedHolidays = ES2.LoadList<postcardScript>("myFile.txt?tag=savedHolidayData");
+
+            Debug.Log("LOADED holiday wish #1: " + myLoadedHolidays[0].locationWish.stampName);
+
+
+            foreach(postcardScript loadedPostcard in myLoadedHolidays)
+            {
+                Debug.Log("Loaded holiday requires " + loadedPostcard.locationWish);
+                GameObject loadedStamp = Instantiate(stampPrefab);
+                stampPrefab.transform.SetParent(postcardRack.transform, false);
+
+                if (loadedPostcard.onHoliday == false)
+                {
+                    loadedStamp.GetComponent<postcardScript>().locationWish = loadedPostcard.locationWish;
+                    loadedStamp.GetComponent<postcardScript>().attributeWish1 = loadedPostcard.attributeWish1;
+                    loadedStamp.GetComponent<postcardScript>().attributeWish2 = loadedPostcard.attributeWish2;
+
+                }
+                else if (loadedPostcard.onHoliday == false)
+                {
+                    loadedStamp.GetComponent<postcardScript>().counterTimeLeft = loadedPostcard.counterTimeLeft;
+                    loadedStamp.GetComponent<postcardScript>().holidayScoreTotal = loadedPostcard.holidayScoreTotal;
+                    //ALSO LOAD FEEDBACK MESSAGES
+
+                }
+
+
+            }
+
+
+        }
+        else if (!ES2.Exists("myFile.txt?tag=savedHolidayData"))
+        {
+            Debug.Log("No saved holidays found :c");
+        }
+            
+
         // Holidays are going to be trickier, restock the holiday postcards
+        if (ES2.Exists("savedHolidays"))
+        {
+            /*
+            savedHoliday = ES2.LoadList<GameObject>("savedHoliday");
+
+            Debug.Log("SavedHoliday found with " + savedHoliday[0].name);
+
+            foreach (GameObject loadedHoliday in savedHoliday)
+            {
+                Debug.Log("Holiday one wishes: " + loadedHoliday.GetComponent<postcardScript>().attributeWish1 + loadedHoliday.GetComponent<postcardScript>().attributeWish2 + loadedHoliday.GetComponent<postcardScript>().locationWish);
+            }
+            */
+        }
+        else if (!ES2.Exists("savedHolidays"))
+        {
+            Debug.Log("savedHolidays list does not exist! :c");
+        }
 		
 	}
 	
@@ -49,9 +130,26 @@ public class dataManager : MonoBehaviour {
         Debug.Log("Saving this date to prefs: " + System.DateTime.Now);
 
         //Save all stampslugs in inventory into a sysprefs array of strings!
-        string[] inventoryLog;
 
         //Save all active holidays and their current times, as well as holidays-in-progress and their requirements
+
+        List<GameObject> savedHoliday = new List<GameObject>();
+        savedHoliday.AddRange(GameObject.FindGameObjectsWithTag("ScrollViewPostCardButton"));
+        Debug.Log("name of holiday to be saved #1: " + savedHoliday[0].name);
+        List<postcardScript> savedHolidayData = new List<postcardScript>();
+        foreach (GameObject savedHolidayIndividual in savedHoliday)
+        {
+            savedHolidayData.Add(savedHolidayIndividual.GetComponent<postcardScript>());
+            Debug.Log("Saved Holiday Requires: " + savedHolidayIndividual.GetComponent<postcardScript>().locationWish.stampName);
+        }
+
+        ES2.Save(savedHolidayData, "myFile.txt?tag=savedHolidayData");
+
+
+        ES3.Save<int>("myInteger", 123);
+
+
+
 
     }
 

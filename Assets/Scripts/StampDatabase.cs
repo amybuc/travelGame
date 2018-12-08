@@ -58,7 +58,7 @@ public class StampDatabase : MonoBehaviour {
 
         if (stampList != null && inventory != null)
         {
-            Debug.Log("Stamp " + getStamp("snowLocation").stampName);
+            //Debug.Log("Stamp " + getStamp("snowLocation").stampName);
             addStamptoPlayerInventory("snowLocation");
             //Debugging Inventory
             /*
@@ -194,17 +194,17 @@ public class StampDatabase : MonoBehaviour {
 
     public void addStamptoShop(string stampSlug, string scrollView)
     {
-        Debug.Log("Method fired");
+        //Debug.Log("Method fired");
 
         foreach (Stamp stamp in stampList)
         {
             if (stamp.stampSlug.Equals(stampSlug))
             {
-                Debug.Log("Matching stamp found");
+               //Debug.Log("Matching stamp found");
 
                 //Instantiate the Prefab
                 GameObject shopStampTemplate = Instantiate(shopStampPrefab);
-                Debug.Log("Stamp instantiated!");
+                //Debug.Log("Stamp instantiated!");
 
                 //Filling in the info:
                 shopStampTemplate.GetComponent<objectStampScript>().stampSlug = stamp.stampSlug;

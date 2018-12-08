@@ -68,12 +68,14 @@ public class postcardScript : MonoBehaviour {
     public GameObject onHolidayImage;
 
     //Stamp Manager GameObject to affect Inventory
-    public GameObject stampManager;
+    GameObject stampManager;
 
     //Countdown for Holiday
     public float counterTimeLeft;
     public bool counterOn;
     public Text counterText;
+
+    public bool onHoliday = false;
 
 
     // Use this for initialization
@@ -83,7 +85,11 @@ public class postcardScript : MonoBehaviour {
 
         gameplayObject = GameObject.FindWithTag("gameplayObject");
 
-        postCardText.text = (" " + locationWish.stampName + attributeWish1.stampName + attributeWish2.stampName);
+        if (postCardText != null)
+        {
+            postCardText.text = (" " + locationWish.stampName + attributeWish1.stampName + attributeWish2.stampName);
+
+        }
 
         stampManager = GameObject.Find("stampManager");
 		
@@ -925,6 +931,8 @@ public class postcardScript : MonoBehaviour {
 
     public void sentOnHoliday(int finalScore, string feedbackMessage)
     {
+
+        onHoliday = true;
         onHolidayImage.SetActive(true);
         counterText.gameObject.SetActive(true);
         gameplayObject.GetComponent<testActivity>().onPostcardClose();

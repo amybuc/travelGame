@@ -55,7 +55,7 @@ public class testActivity : MonoBehaviour {
         playerCoins = 50;
 
         BuildHolildayDatabase();
-        Debug.Log("The First holiday wish in the database is of type " + wishDatabase[0].stampName + "and has has a fun requirement of " + wishDatabase[0].funRequirement);
+        //Debug.Log("The First holiday wish in the database is of type " + wishDatabase[0].stampName + "and has has a fun requirement of " + wishDatabase[0].funRequirement);
         stampManager = GameObject.Find("stampManager");
 
         stampManager.GetComponent<StampDatabase>().addStamptoShop("romanticDinner", "activity");
