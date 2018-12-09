@@ -14,6 +14,8 @@ public class dataManager : MonoBehaviour {
     GameObject inventoryObject;
     GameObject gameplayObject;
 
+    testActivity testActivityInstance;
+
     //public List<GameObject> savedHoliday;
 
     // Use this for initialization
@@ -21,6 +23,7 @@ public class dataManager : MonoBehaviour {
 
         inventoryObject = GameObject.Find("stampManager");
         gameplayObject = GameObject.Find("gameplayObject");
+        testActivityInstance = gameplayObject.GetComponent<testActivity>();
 
         //Log current time
         currentDate = System.DateTime.Now;
@@ -53,58 +56,10 @@ public class dataManager : MonoBehaviour {
         }
 
         //Deleting existing postcard save file - comment out as needed
-        //if (ES2.Exists("myFile.txt?tag=savedHolidayWishes"))
-            //ES2.Delete("myFile.txt?tag=savedHolidayWishes");
+        if (ES2.Exists("myFile.txt?tag=savedHolidayWishes"))
+            ES2.Delete("myFile.txt?tag=savedHolidayWishes");
 
-
-            // If there's a List to load, load it.
-            if (ES2.Exists("myFile.txt?tag=savedHolidayWishes"))
-        {
-            Debug.Log("LoadFile found!");
-            List<string> myLoadedHolidays;
-            myLoadedHolidays = ES2.LoadList<string>("myFile.txt?tag=savedHolidayWishes");
-
-
-            foreach(string wishesString in myLoadedHolidays)
-            {
-                Debug.Log("Loaded holiday: " + wishesString);
-
-                if (gameplayObject != null)
-                {
-                    //gameplayObject.GetComponent<testActivity>().updateHoliday();
-                    gameplayObject.GetComponent<testActivity>().updateSpecificHoliday((int)Char.GetNumericValue(wishesString[0]), (int)Char.GetNumericValue(wishesString[1]), (int)Char.GetNumericValue(wishesString[3]));
-                    gameplayObject.GetComponent<testActivity>().onHolidayAccept();
-                }
-
-            }
-
-
-        }
-        else if (!ES2.Exists("myFile.txt?tag=savedHolidayData"))
-        {
-            Debug.Log("No saved holidays found :c");
-        }
-            
-
-        // Holidays are going to be trickier, restock the holiday postcards
-        if (ES2.Exists("savedHolidays"))
-        {
-            /*
-            savedHoliday = ES2.LoadList<GameObject>("savedHoliday");
-
-            Debug.Log("SavedHoliday found with " + savedHoliday[0].name);
-
-            foreach (GameObject loadedHoliday in savedHoliday)
-            {
-                Debug.Log("Holiday one wishes: " + loadedHoliday.GetComponent<postcardScript>().attributeWish1 + loadedHoliday.GetComponent<postcardScript>().attributeWish2 + loadedHoliday.GetComponent<postcardScript>().locationWish);
-            }
-            */
-        }
-        else if (!ES2.Exists("savedHolidays"))
-        {
-            Debug.Log("savedHolidays list does not exist! :c");
-        }
-		
+	
 	}
 	
 	// Update is called once per frame

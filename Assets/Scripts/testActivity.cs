@@ -59,6 +59,60 @@ public class testActivity : MonoBehaviour {
         stampManager = GameObject.Find("stampManager");
 
         stampManager.GetComponent<StampDatabase>().addStamptoShop("romanticDinner", "activity");
+
+        //LOAD POSTCARDS
+
+        // If there's a List to load, load it.
+        if (ES2.Exists("myFile.txt?tag=savedHolidayWishes"))
+        {
+            Debug.Log("LoadFile found!");
+            List<string> myLoadedHolidays;
+            myLoadedHolidays = ES2.LoadList<string>("myFile.txt?tag=savedHolidayWishes");
+
+
+            foreach (string wishesString in myLoadedHolidays)
+            {
+                Debug.Log("Loaded holiday: " + wishesString);
+
+                updateSpecificHoliday((int)char.GetNumericValue(wishesString[0]), (int)char.GetNumericValue(wishesString[1]), (int)char.GetNumericValue(wishesString[2]));
+                onHolidayAccept();
+
+                    //Instantiating from scratch
+                    /*
+                    GameObject loadedPostCard = Instantiate(stampPrefab);
+                    loadedPostCard.transform.SetParent(postcardRack.transform, false);
+
+                    loadedPostCard.GetComponent<postcardScript>().locWish = (int)Char.GetNumericValue(wishesString[0]);
+                    loadedPostCard.GetComponent<postcardScript>().actWish1 = (int)Char.GetNumericValue(wishesString[1]);
+                    loadedPostCard.GetComponent<postcardScript>().actWish2 = (int)Char.GetNumericValue(wishesString[2]);
+
+                    //WHERE IM UP TO: The numbers are loading into the loaded postcard, just need to get them turned into holidayWishes as well!
+                    loadedPostCard.GetComponent<postcardScript>().locationWish = testActivity.wishDatabase[wishesString[0]];
+                    loadedPostCard.GetComponent<postcardScript>().attributeWish1 = testActivity.wishDatabase[wishesString[1]];
+                    loadedPostCard.GetComponent<postcardScript>().attributeWish2 = testActivity.wishDatabase[wishesString[2]];
+                    */
+
+                    //loadedPostCard.GetComponent<postcardScript>().locationWish = 
+
+                    //addedHoliday.GetComponent<postcardScript>().locWish = WishInt1;
+                    //addedHoliday.GetComponent<postcardScript>().actWish1 = WishInt2;
+
+                    //gameplayObject.GetComponent<testActivity>().updateHoliday();
+                    //gameplayObject.GetComponent<testActivity>().updateSpecificHoliday((int)Char.GetNumericValue(wishesString[0]), (int)Char.GetNumericValue(wishesString[1]), (int)Char.GetNumericValue(wishesString[3]));
+                    //gameplayObject.GetComponent<testActivity>().onHolidayAccept();
+
+
+            }
+
+
+        }
+        else if (!ES2.Exists("myFile.txt?tag=savedHolidayData"))
+        {
+            Debug.Log("No saved holidays found :c");
+        }
+
+
+
     }
 	
 	// Update is called once per frame
