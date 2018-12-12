@@ -20,6 +20,10 @@ public class testActivity : MonoBehaviour {
     public int holidayStat02;
     public int holidayStat03;
 
+    public int random1;
+    public int random2;
+    public int random3;
+
     public GameObject resourcesObject;
     public GameObject stampManager;
 
@@ -74,7 +78,13 @@ public class testActivity : MonoBehaviour {
             {
                 Debug.Log("Loaded holiday: " + wishesString);
 
-                updateSpecificHoliday((int)char.GetNumericValue(wishesString[0]), (int)char.GetNumericValue(wishesString[1]), (int)char.GetNumericValue(wishesString[2]));
+                string[] splitString = wishesString.Split('/');
+
+                Debug.Log("array number 1: " + splitString[0]);
+                Debug.Log("array number 2:" + splitString[1]);
+                Debug.Log("array number 3:" + splitString[2]);
+
+                updateSpecificHoliday(int.Parse(splitString[0]), (int.Parse(splitString[1])), int.Parse(splitString[2]));
                 onHolidayAccept();
 
                     //Instantiating from scratch
@@ -132,9 +142,23 @@ public class testActivity : MonoBehaviour {
     {
 
         //implementing JSON - randomise the first wish among the locations, then randomise the other two from holiday attributes
+
+        random1 = Random.Range(0, 6);
+        random2 = Random.Range(7, wishDatabase.Count);
+        random3 = Random.Range(7, wishDatabase.Count);
+        Debug.Log("" + random1);
+        Debug.Log("" + random2);
+        Debug.Log("" + random3);
+
+        locationWish = wishDatabase[random1];
+        attributeWish1 = wishDatabase[random2];
+        attributeWish2 = wishDatabase[random3];
+
+        /*
         locationWish = wishDatabase[Random.Range(0, 6)];
         attributeWish1 = wishDatabase[Random.Range(7, wishDatabase.Count)];
         attributeWish2 = wishDatabase[Random.Range(7, wishDatabase.Count)];
+        */
 
         //Check the two attributes aren't the same
         while (attributeWish1.wishID == attributeWish2.wishID)
@@ -191,7 +215,7 @@ public class testActivity : MonoBehaviour {
 
     public void onHolidayAccept()
     {
-        holidaySetter.GetComponent<setHoliday>().setupHoliday(locationWish, attributeWish1, attributeWish2, holidayStat01, holidayStat02, holidayStat03);
+        holidaySetter.GetComponent<setHoliday>().setupHoliday(locationWish, attributeWish1, attributeWish2, random1, random2, random3);
         dialogueBox.SetActive(false);
     }
 

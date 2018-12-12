@@ -56,8 +56,8 @@ public class dataManager : MonoBehaviour {
         }
 
         //Deleting existing postcard save file - comment out as needed
-        if (ES2.Exists("myFile.txt?tag=savedHolidayWishes"))
-            ES2.Delete("myFile.txt?tag=savedHolidayWishes");
+        //if (ES2.Exists("myFile.txt?tag=savedHolidayWishes"))
+            //ES2.Delete("myFile.txt?tag=savedHolidayWishes");
 
 	
 	}
@@ -85,7 +85,7 @@ public class dataManager : MonoBehaviour {
         {
             if (holiday.GetComponent<postcardScript>().onHoliday == false)
             {
-                string holidayWishesString = "" + holiday.GetComponent<postcardScript>().locWish + holiday.GetComponent<postcardScript>().actWish1 + holiday.GetComponent<postcardScript>().actWish2;
+                string holidayWishesString = "" + holiday.GetComponent<postcardScript>().locWish + "/" + holiday.GetComponent<postcardScript>().actWish1 + "/" + holiday.GetComponent<postcardScript>().actWish2;
                 savedHolidayWishes.Add(holidayWishesString);
                 Debug.Log("Saved holiday wishes are: " + holidayWishesString);
             }
